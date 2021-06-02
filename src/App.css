@@ -114,3 +114,36 @@
   justify-self: center;
   width: 25%;
 }
+
+.Difficulty {
+  display:flex;
+  flex-wrap: wrap;
+  justify-items: center;
+  justify-content: space-evenly;
+  align-items: baseline;
+  max-width: 800px;
+  width: 100%;
+  align-self: center;
+  margin: 20px;
+}
+.Difficulty-button {
+  color: ivory;
+  background-color: #888af5;
+  margin: 4px;
+  padding: 8px;
+  float: left;
+  width: calc(8px + 5vw);
+  min-width: 100px;
+  height:190;
+  font-size: calc(4px + 1vmin);
+  text-justify: left;
+  font-family: Sans-Serif;
+  border-width: 6px;
+  border-radius: 25px;
+  border-color: #5e5e5e;
+  border-style: solid;
+}
+
+.Difficulty-button:active {
+  background-color: #5e5fa8;
+}
