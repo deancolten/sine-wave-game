@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 
-const tonesList = [
+const tonesListHard = [
   ['50hz', 'https://dl.dropbox.com/s/ll1och6sxbqbcwj/50.mp3?dl=0'],
   ['62hz', 'https://dl.dropbox.com/s/djob6jh23et18fv/62.mp3?dl=0'],
   ['80hz', 'https://dl.dropbox.com/s/br7lhepc0gz76m0/80.mp3?dl=0'],
@@ -24,14 +24,43 @@ const tonesList = [
   ['12khz', "https://dl.dropbox.com/s/5cpdn18y1yze1m5/12000.mp3?dl=0"],
   ['16khz', "https://dl.dropbox.com/s/jfzk1jvkf6zb7t7/16000.mp3?dl=0"],
 ]
+const tonesListMed = [
 
+  ['62hz', 'https://dl.dropbox.com/s/djob6jh23et18fv/62.mp3?dl=0'],
+  ['100hz', "https://dl.dropbox.com/s/sg4lgrcgbujdl4s/100.mp3?dl=0"],
+  ['200hz', "https://dl.dropbox.com/s/gwevky1s0x08l2o/200.mp3?dl=0"],
+  ['400hz', "https://dl.dropbox.com/s/23f599vgxvgqkc5/400.mp3?dl=0"],
+  ['500hz', "https://dl.dropbox.com/s/bf1lgsf7qs58k4c/500.mp3?dl=0"],
+  ['800hz', "https://dl.dropbox.com/s/02z99w9sg867wzy/800.mp3?dl=0"],
+  ['1khz', "https://dl.dropbox.com/s/h4yfpizlqx178p6/1000.mp3?dl=0"],
+  ['2khz', "https://dl.dropbox.com/s/s70tzbwdab0a3pi/2000.mp3?dl=0"],
+  ['4khz', "https://dl.dropbox.com/s/px7vxm2lpcrqyuz/4000.mp3?dl=0"],
+  ['6khz', "https://dl.dropbox.com/s/s1lv1p5kowag5s6/6000.mp3?dl=0"],
+  ['8khz', "https://dl.dropbox.com/s/9cgcd5ozkq57eex/8000.mp3?dl=0"],
+  ['10khz', "https://dl.dropbox.com/s/leb7zhmwx1mo4ik/10000.mp3?dl=0"],
+  ['16khz', "https://dl.dropbox.com/s/jfzk1jvkf6zb7t7/16000.mp3?dl=0"],
+]
+const tonesListEasy = [
+
+  ['62hz', 'https://dl.dropbox.com/s/djob6jh23et18fv/62.mp3?dl=0'],
+  ['100hz', "https://dl.dropbox.com/s/sg4lgrcgbujdl4s/100.mp3?dl=0"],
+  ['200hz', "https://dl.dropbox.com/s/gwevky1s0x08l2o/200.mp3?dl=0"],
+  ['400hz', "https://dl.dropbox.com/s/23f599vgxvgqkc5/400.mp3?dl=0"],
+  ['1khz', "https://dl.dropbox.com/s/h4yfpizlqx178p6/1000.mp3?dl=0"],
+  ['4khz', "https://dl.dropbox.com/s/px7vxm2lpcrqyuz/4000.mp3?dl=0"],
+  ['10khz', "https://dl.dropbox.com/s/leb7zhmwx1mo4ik/10000.mp3?dl=0"],
+  ['16khz', "https://dl.dropbox.com/s/jfzk1jvkf6zb7t7/16000.mp3?dl=0"],
+]
+const mainTonesLists = [tonesListEasy, tonesListMed, tonesListHard];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    let winner = getRandom(0, tonesList.length)
+    let tonesList = mainTonesLists[1];
+    let winner = getRandom(0, tonesList.length);
     this.state = {
-      quantity: tonesList.length,
+      difficulty: 1,
+      tonesList: tonesList,
       winner: winner,
       buttons: Array(tonesList.length).fill(0),
       gameComplete: false,
@@ -55,9 +84,9 @@ class App extends React.Component {
   togglePlay() {
     if (this.state.gameComplete) {
       this.audio.pause();
+      let tonesList = this.state.tonesList;
       let winner = getRandom(0, tonesList.length)
       this.setState({
-        quantity: tonesList.length,
         winner: winner,
         buttons: Array(tonesList.length).fill(0),
         gameComplete: false,
@@ -96,14 +125,17 @@ class App extends React.Component {
     }
   }
 
-  handleReset() {
+  handleReset(difficulty) {
     this.audio.pause();
+    let tonesList = difficulty !== undefined ? mainTonesLists[difficulty] : this.state.tonesList;
+    let newDifficulty = difficulty !== undefined ? difficulty : this.state.difficulty;
     let winner = getRandom(0, tonesList.length)
     this.setState({
-      quantity: tonesList.length,
+      difficulty: newDifficulty,
       winner: winner,
       buttons: Array(tonesList.length).fill(0),
       gameComplete: false,
+      tonesList: tonesList,
       play: false,
       source: tonesList[winner][1],
       attempts: 0,
@@ -112,6 +144,7 @@ class App extends React.Component {
     })
     this.audio.setAttribute('src', tonesList[winner][1])
   }
+
 
 
   render() {
@@ -126,11 +159,12 @@ class App extends React.Component {
 
 
 
-    for (var i = 0; i < this.state.buttons.length; i++) {
+    for (var i = 0; i < this.state.tonesList.length; i++) {
       buttonArray.push(
         <FreqButton
           value={i}
           key={i}
+          text={this.state.tonesList[i][0]}
           status={this.state.buttons[i]}
           onClick={(i) => this.handleClick(i)
           }
@@ -150,6 +184,12 @@ class App extends React.Component {
           <div className="Button-array">
             {buttonArray}
           </div>
+          <div className="Difficulty-title">Change Difficulty?</div>
+          <div className="Difficulty">
+            <DifficultyButton text="Easy" onClick={() => this.handleReset(0)} disable={this.state.difficulty === 0} />
+            <DifficultyButton text="Medium" onClick={() => this.handleReset(1)} disable={this.state.difficulty === 1} />
+            <DifficultyButton text="Hard" onClick={() => this.handleReset(2)} disable={this.state.difficulty === 2} />
+          </div>
         </div>
       </div >
     );
@@ -160,7 +200,6 @@ class App extends React.Component {
 class FreqButton extends React.Component {
   render() {
     let currentClass = "Freq-button";
-    let currentValue = tonesList[this.props.value][0]
 
     if (this.props.status === 2) {
       currentClass = "Freq-button Freq-button-winner";
@@ -175,11 +214,10 @@ class FreqButton extends React.Component {
         className={currentClass}
         onClick={() => this.props.onClick(this.props.value)}
       >
-        {currentValue}
+        {this.props.text}
       </ button >)
   }
 }
-
 
 class Tone extends React.Component {
 
@@ -198,6 +236,17 @@ class Tone extends React.Component {
   }
 }
 
+function DifficultyButton(props) {
+  return (
+    <button
+      disabled={props.disable}
+      className="Difficulty-button"
+      onClick={() => props.onClick()}
+    >
+      {props.text}
+    </button >
+  )
+}
 export default App;
 
 // **************FUNCTIONS****************
