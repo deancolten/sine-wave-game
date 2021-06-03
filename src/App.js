@@ -51,17 +51,16 @@ const tonesListEasy = [
   ['10khz', "https://dl.dropbox.com/s/leb7zhmwx1mo4ik/10000.mp3?dl=0"],
   ['16khz', "https://dl.dropbox.com/s/jfzk1jvkf6zb7t7/16000.mp3?dl=0"],
 ]
-
+const mainTonesLists = [tonesListEasy, tonesListMed, tonesListHard];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    let tonesList = tonesListMed;
-    let winner = getRandom(0, tonesList.length)
+    let tonesList = mainTonesLists[1];
+    let winner = getRandom(0, tonesList.length);
     this.state = {
       difficulty: 1,
       tonesList: tonesList,
-      quantity: tonesList.length,
       winner: winner,
       buttons: Array(tonesList.length).fill(0),
       gameComplete: false,
@@ -88,7 +87,6 @@ class App extends React.Component {
       let tonesList = this.state.tonesList;
       let winner = getRandom(0, tonesList.length)
       this.setState({
-        quantity: tonesList.length,
         winner: winner,
         buttons: Array(tonesList.length).fill(0),
         gameComplete: false,
@@ -127,14 +125,13 @@ class App extends React.Component {
     }
   }
 
-  handleReset(iTonesList, difficulty) {
+  handleReset(difficulty) {
     this.audio.pause();
-    let tonesList = iTonesList ? iTonesList : this.state.tonesList;
+    let tonesList = difficulty !== undefined ? mainTonesLists[difficulty] : this.state.tonesList;
     let newDifficulty = difficulty !== undefined ? difficulty : this.state.difficulty;
     let winner = getRandom(0, tonesList.length)
     this.setState({
       difficulty: newDifficulty,
-      quantity: tonesList.length,
       winner: winner,
       buttons: Array(tonesList.length).fill(0),
       gameComplete: false,
@@ -148,23 +145,6 @@ class App extends React.Component {
     this.audio.setAttribute('src', tonesList[winner][1])
   }
 
-  changeDifficulty(difficulty) {
-    console.log(difficulty);
-    let newTones = [];
-    switch (difficulty) {
-      case 0:
-        newTones = tonesListEasy;
-        break;
-      case 1:
-        newTones = tonesListMed;
-        break;
-      case 2:
-        newTones = tonesListHard;
-        break;
-      default:
-    }
-    this.handleReset(newTones, difficulty);
-  }
 
 
   render() {
@@ -179,7 +159,7 @@ class App extends React.Component {
 
 
 
-    for (var i = 0; i < this.state.buttons.length; i++) {
+    for (var i = 0; i < this.state.tonesList.length; i++) {
       buttonArray.push(
         <FreqButton
           value={i}
@@ -206,9 +186,9 @@ class App extends React.Component {
           </div>
           <div className="Difficulty-title">Change Difficulty?</div>
           <div className="Difficulty">
-            <DifficultyButton text="Easy" onClick={() => this.changeDifficulty(0)} disable={this.state.difficulty === 0} />
-            <DifficultyButton text="Medium" onClick={() => this.changeDifficulty(1)} disable={this.state.difficulty === 1} />
-            <DifficultyButton text="Hard" onClick={() => this.changeDifficulty(2)} disable={this.state.difficulty === 2} />
+            <DifficultyButton text="Easy" onClick={() => this.handleReset(0)} disable={this.state.difficulty === 0} />
+            <DifficultyButton text="Medium" onClick={() => this.handleReset(1)} disable={this.state.difficulty === 1} />
+            <DifficultyButton text="Hard" onClick={() => this.handleReset(2)} disable={this.state.difficulty === 2} />
           </div>
         </div>
       </div >
@@ -238,7 +218,6 @@ class FreqButton extends React.Component {
       </ button >)
   }
 }
-
 
 class Tone extends React.Component {
 
