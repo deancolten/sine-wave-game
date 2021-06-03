@@ -30,6 +30,7 @@
   max-width: 800px;
   width: 100%;
   align-self: center;
+  margin-bottom: 30px;
 }
 .Freq-button {
   color: ivory;
@@ -64,8 +65,11 @@
 
 .Reset {
   margin: 8px;
-  background-color: grey !important;
+  background-color: #808080 !important;
   width: 15%
+}
+.Reset:active {
+  background-color: #646464 !important;
 }
 
 .Reset-complete {
@@ -124,7 +128,7 @@
   max-width: 800px;
   width: 100%;
   align-self: center;
-  margin: 20px;
+  margin: 8px;
 }
 .Difficulty-button {
   color: ivory;
@@ -144,6 +148,22 @@
   border-style: solid;
 }
 
+.Difficulty-button:disabled {
+  color: grey;
+
+}
 .Difficulty-button:active {
   background-color: #5e5fa8;
+}
+
+.Difficulty-title{
+  color: rgba(255, 255, 240, 0.596);
+  margin-top: 10px;
+  padding: 8px;
+  font-size: larger;
+  text-justify: center;
+  font-family: Sans-Serif;
+  justify-self: center;
+  align-self: center;
+
 }

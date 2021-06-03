@@ -59,6 +59,7 @@ class App extends React.Component {
     let tonesList = tonesListMed;
     let winner = getRandom(0, tonesList.length)
     this.state = {
+      difficulty: 1,
       tonesList: tonesList,
       quantity: tonesList.length,
       winner: winner,
@@ -126,15 +127,18 @@ class App extends React.Component {
     }
   }
 
-  handleReset() {
+  handleReset(iTonesList, difficulty) {
     this.audio.pause();
-    let tonesList = this.state.tonesList;
+    let tonesList = iTonesList ? iTonesList : this.state.tonesList;
+    let newDifficulty = difficulty !== undefined ? difficulty : this.state.difficulty;
     let winner = getRandom(0, tonesList.length)
     this.setState({
+      difficulty: newDifficulty,
       quantity: tonesList.length,
       winner: winner,
       buttons: Array(tonesList.length).fill(0),
       gameComplete: false,
+      tonesList: tonesList,
       play: false,
       source: tonesList[winner][1],
       attempts: 0,
@@ -149,7 +153,6 @@ class App extends React.Component {
     let newTones = [];
     switch (difficulty) {
       case 0:
-        console.log(tonesListEasy)
         newTones = tonesListEasy;
         break;
       case 1:
@@ -160,21 +163,7 @@ class App extends React.Component {
         break;
       default:
     }
-    this.audio.pause();
-    let winner = getRandom(0, newTones.length);
-    this.setState({
-      winner: winner,
-      gameComplete: false,
-      play: false,
-      source: newTones[winner][1],
-      attempts: 0,
-      correct: 0,
-      highLow: "Take a Guess",
-      tonesList: newTones,
-      buttons: Array(newTones.length).fill(0),
-      quantity: newTones.length,
-    })
-    this.audio.setAttribute('src', newTones[winner][1])
+    this.handleReset(newTones, difficulty);
   }
 
 
@@ -215,10 +204,11 @@ class App extends React.Component {
           <div className="Button-array">
             {buttonArray}
           </div>
+          <div className="Difficulty-title">Change Difficulty?</div>
           <div className="Difficulty">
-            <DifficultyButton text="Easy" onClick={() => this.changeDifficulty(0)} />
-            <DifficultyButton text="Medium" onClick={() => this.changeDifficulty(1)} />
-            <DifficultyButton text="Hard" onClick={() => this.changeDifficulty(2)} />
+            <DifficultyButton text="Easy" onClick={() => this.changeDifficulty(0)} disable={this.state.difficulty === 0} />
+            <DifficultyButton text="Medium" onClick={() => this.changeDifficulty(1)} disable={this.state.difficulty === 1} />
+            <DifficultyButton text="Hard" onClick={() => this.changeDifficulty(2)} disable={this.state.difficulty === 2} />
           </div>
         </div>
       </div >
@@ -270,6 +260,7 @@ class Tone extends React.Component {
 function DifficultyButton(props) {
   return (
     <button
+      disabled={props.disable}
       className="Difficulty-button"
       onClick={() => props.onClick()}
     >
