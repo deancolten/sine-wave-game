@@ -174,7 +174,7 @@ class App extends React.Component {
     return (
       <div>
         <div className="Freq-app">
-          <div className="Header-title">Audio Frequency Game</div>
+          <div className="Header-title">Sine Wav Frequency Game</div>
           <div className="Main-buttons">
             <Tone play={this.state.play} gameComplete={this.state.gameComplete} onClick={() => this.togglePlay()} />
             <button className="Freq-button Reset" onClick={() => this.handleReset()}>Reset</button>
