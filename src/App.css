@@ -1,9 +1,13 @@
+html {
+  /* background-color: #303030; */
+  background-color: #221d2e;
+}
 .Freq-app {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #303030;
+  /* background-color: #303030; */
   min-height: 100vh;
   padding-top: 30px;
   padding-left: 10%;
@@ -57,10 +61,14 @@
   background-color: #d4c112;
 }
 .Freq-button-clicked:active {
-  background-color: #867a0a;
+  background-color: #a5960d;
 }
 .Freq-button-winner {
   background-color: #39d412;
+}
+
+.Freq-button-winner:active {
+  background-color: #2ea311;
 }
 
 .Reset {
@@ -74,6 +82,10 @@
 
 .Reset-complete {
   background-color: #39d412 !important;
+}
+
+.Reset-complete:active {
+  background-color: #2ea311 !important;
 }
 
 .Header-title {
