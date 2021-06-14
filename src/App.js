@@ -1,6 +1,8 @@
 import './App.css';
 import React from 'react';
 
+const startingDifficulty = 1;
+
 const tonesListHard = [
   ['50hz', 'https://dl.dropbox.com/s/ll1och6sxbqbcwj/50.mp3?dl=0'],
   ['62hz', 'https://dl.dropbox.com/s/djob6jh23et18fv/62.mp3?dl=0'],
@@ -56,8 +58,13 @@ const mainTonesLists = [tonesListEasy, tonesListMed, tonesListHard];
 class App extends React.Component {
   constructor(props) {
     super(props);
-    let tonesList = mainTonesLists[1];
+    let tonesList = mainTonesLists[startingDifficulty];
     let winner = getRandom(0, tonesList.length);
+    this.audioFiles = [];
+    for (let i = 0; i < tonesList.length; i++) {
+      this.audioFiles.push(new Audio(tonesList[i][1]));
+      console.log(this.audioFiles[i].);
+    };
     this.state = {
       difficulty: 1,
       tonesList: tonesList,
@@ -65,12 +72,11 @@ class App extends React.Component {
       buttons: Array(tonesList.length).fill(0),
       gameComplete: false,
       play: false,
-      source: tonesList[winner][1],
       attempts: 0,
       correct: 0,
       highLow: "Take a Guess"
     }
-    this.audio = new Audio(this.state.source)
+    this.audio = this.audioFiles[winner]
 
   }
   componentDidMount() {
@@ -83,24 +89,28 @@ class App extends React.Component {
 
   togglePlay() {
     if (this.state.gameComplete) {
-      this.audio.pause();
+      this.audioFiles[this.state.winner].pause();
+      this.audioFiles[this.state.winner].removeEventListener('ended', () => this.setState({ play: false }));
       let tonesList = this.state.tonesList;
       let winner = getRandom(0, tonesList.length)
+      this.audioFiles[winner].addEventListener('ended', () => this.setState({ play: false }));
       this.setState({
         winner: winner,
         buttons: Array(tonesList.length).fill(0),
         gameComplete: false,
         play: false,
-        source: tonesList[winner][1],
         highLow: "Take a Guess",
       })
-      this.audio.setAttribute('src', tonesList[winner][1])
+      this.audioFiles[winner].currentTime = 0;
       this.setState({ play: true });
-      this.audio.play()
+      this.audioFiles[winner].play();
     }
     else {
+      let winner = this.state.winner;
       this.setState({ play: !this.state.play }, () => {
-        this.state.play ? this.audio.play() : this.audio.load();
+        this.state.play ? this.audioFiles[winner].play() :
+          this.audioFiles[winner].pause();
+        this.audioFiles[winner].currentTime = 0;
       })
     }
 
@@ -127,9 +137,15 @@ class App extends React.Component {
 
   handleReset(difficulty) {
     this.audio.pause();
+    this.audio.removeEventListener('ended', () => this.setState({ play: false }));
     let tonesList = difficulty !== undefined ? mainTonesLists[difficulty] : this.state.tonesList;
     let newDifficulty = difficulty !== undefined ? difficulty : this.state.difficulty;
     let winner = getRandom(0, tonesList.length)
+
+    this.audioFiles = [];
+    for (let i = 0; i < tonesList.length; i++) {
+      this.audioFiles.push(new Audio(tonesList[i][1]));
+    }
     this.setState({
       difficulty: newDifficulty,
       winner: winner,
@@ -137,12 +153,13 @@ class App extends React.Component {
       gameComplete: false,
       tonesList: tonesList,
       play: false,
-      source: tonesList[winner][1],
       attempts: 0,
       correct: 0,
       highLow: "Take a Guess",
     })
-    this.audio.setAttribute('src', tonesList[winner][1])
+    this.audio = this.audioFiles[winner];
+    this.audio.load();
+    this.audio.addEventListener('ended', () => this.setState({ play: false }));
   }
 
 
