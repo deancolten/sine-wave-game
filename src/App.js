@@ -4,54 +4,54 @@ import React from 'react';
 const startingDifficulty = 1;
 
 const tonesListHard = [
-  ['50hz', 'https://dl.dropbox.com/s/ll1och6sxbqbcwj/50.mp3?dl=0'],
-  ['62hz', 'https://dl.dropbox.com/s/djob6jh23et18fv/62.mp3?dl=0'],
-  ['80hz', 'https://dl.dropbox.com/s/br7lhepc0gz76m0/80.mp3?dl=0'],
-  ['100hz', "https://dl.dropbox.com/s/sg4lgrcgbujdl4s/100.mp3?dl=0"],
-  ['200hz', "https://dl.dropbox.com/s/gwevky1s0x08l2o/200.mp3?dl=0"],
-  ['250hz', "https://dl.dropbox.com/s/xba229w5m6urjql/250.mp3?dl=0"],
-  ['300hz', "https://dl.dropbox.com/s/1ag8zcusloae9w2/300.mp3?dl=0"],
-  ['400hz', "https://dl.dropbox.com/s/23f599vgxvgqkc5/400.mp3?dl=0"],
-  ['500hz', "https://dl.dropbox.com/s/bf1lgsf7qs58k4c/500.mp3?dl=0"],
-  ['800hz', "https://dl.dropbox.com/s/02z99w9sg867wzy/800.mp3?dl=0"],
-  ['1khz', "https://dl.dropbox.com/s/h4yfpizlqx178p6/1000.mp3?dl=0"],
-  ['1.5khz', "https://dl.dropbox.com/s/4wie3f9mi24xh8z/1500.mp3?dl=0"],
-  ['2khz', "https://dl.dropbox.com/s/s70tzbwdab0a3pi/2000.mp3?dl=0"],
-  ['3khz', "https://dl.dropbox.com/s/lldvr2d5dnlurzw/3000.mp3?dl=0"],
-  ['4khz', "https://dl.dropbox.com/s/px7vxm2lpcrqyuz/4000.mp3?dl=0"],
-  ['5khz', "https://dl.dropbox.com/s/00sjdvwa79f9lc0/5000.mp3?dl=0"],
-  ['6khz', "https://dl.dropbox.com/s/s1lv1p5kowag5s6/6000.mp3?dl=0"],
-  ['8khz', "https://dl.dropbox.com/s/9cgcd5ozkq57eex/8000.mp3?dl=0"],
-  ['10khz', "https://dl.dropbox.com/s/leb7zhmwx1mo4ik/10000.mp3?dl=0"],
-  ['12khz', "https://dl.dropbox.com/s/5cpdn18y1yze1m5/12000.mp3?dl=0"],
-  ['16khz', "https://dl.dropbox.com/s/jfzk1jvkf6zb7t7/16000.mp3?dl=0"],
+  ['50hz', 'https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/50.mp3'],
+  ['62hz', 'https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/62.mp3'],
+  ['80hz', 'https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/80.mp3'],
+  ['100hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/100.mp3"],
+  ['200hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/200.mp3"],
+  ['250hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/250.mp3"],
+  ['300hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/300.mp3"],
+  ['400hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/400.mp3"],
+  ['500hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/500.mp3"],
+  ['800hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/800.mp3"],
+  ['1khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/1000.mp3"],
+  ['1.5khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/1500.mp3"],
+  ['2khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/2000.mp3"],
+  ['3khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/3000.mp3"],
+  ['4khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/4000.mp3"],
+  ['5khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/5000.mp3"],
+  ['6khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/6000.mp3"],
+  ['8khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/8000.mp3"],
+  ['10khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/10000.mp3"],
+  ['12khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/12000.mp3"],
+  ['16khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/16000.mp3"],
 ]
 const tonesListMed = [
 
-  ['62hz', 'https://dl.dropbox.com/s/djob6jh23et18fv/62.mp3?dl=0'],
-  ['100hz', "https://dl.dropbox.com/s/sg4lgrcgbujdl4s/100.mp3?dl=0"],
-  ['200hz', "https://dl.dropbox.com/s/gwevky1s0x08l2o/200.mp3?dl=0"],
-  ['400hz', "https://dl.dropbox.com/s/23f599vgxvgqkc5/400.mp3?dl=0"],
-  ['500hz', "https://dl.dropbox.com/s/bf1lgsf7qs58k4c/500.mp3?dl=0"],
-  ['800hz', "https://dl.dropbox.com/s/02z99w9sg867wzy/800.mp3?dl=0"],
-  ['1khz', "https://dl.dropbox.com/s/h4yfpizlqx178p6/1000.mp3?dl=0"],
-  ['2khz', "https://dl.dropbox.com/s/s70tzbwdab0a3pi/2000.mp3?dl=0"],
-  ['4khz', "https://dl.dropbox.com/s/px7vxm2lpcrqyuz/4000.mp3?dl=0"],
-  ['6khz', "https://dl.dropbox.com/s/s1lv1p5kowag5s6/6000.mp3?dl=0"],
-  ['8khz', "https://dl.dropbox.com/s/9cgcd5ozkq57eex/8000.mp3?dl=0"],
-  ['10khz', "https://dl.dropbox.com/s/leb7zhmwx1mo4ik/10000.mp3?dl=0"],
-  ['16khz', "https://dl.dropbox.com/s/jfzk1jvkf6zb7t7/16000.mp3?dl=0"],
+  ['62hz', 'https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/62.mp3'],
+  ['100hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/100.mp3"],
+  ['200hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/200.mp3"],
+  ['400hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/400.mp3"],
+  ['500hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/500.mp3"],
+  ['800hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/800.mp3"],
+  ['1khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/1000.mp3"],
+  ['2khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/2000.mp3"],
+  ['4khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/4000.mp3"],
+  ['6khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/6000.mp3"],
+  ['8khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/8000.mp3"],
+  ['10khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/10000.mp3"],
+  ['16khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/16000.mp3"],
 ]
 const tonesListEasy = [
 
-  ['62hz', 'https://dl.dropbox.com/s/djob6jh23et18fv/62.mp3?dl=0'],
-  ['100hz', "https://dl.dropbox.com/s/sg4lgrcgbujdl4s/100.mp3?dl=0"],
-  ['200hz', "https://dl.dropbox.com/s/gwevky1s0x08l2o/200.mp3?dl=0"],
-  ['400hz', "https://dl.dropbox.com/s/23f599vgxvgqkc5/400.mp3?dl=0"],
-  ['1khz', "https://dl.dropbox.com/s/h4yfpizlqx178p6/1000.mp3?dl=0"],
-  ['4khz', "https://dl.dropbox.com/s/px7vxm2lpcrqyuz/4000.mp3?dl=0"],
-  ['10khz', "https://dl.dropbox.com/s/leb7zhmwx1mo4ik/10000.mp3?dl=0"],
-  ['16khz', "https://dl.dropbox.com/s/jfzk1jvkf6zb7t7/16000.mp3?dl=0"],
+  ['62hz', 'https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/62.mp3'],
+  ['100hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/100.mp3"],
+  ['200hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/200.mp3"],
+  ['400hz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/400.mp3"],
+  ['1khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/1000.mp3"],
+  ['4khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/4000.mp3"],
+  ['10khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/10000.mp3"],
+  ['16khz', "https://colten-test-files-1.s3.us-east-2.amazonaws.com/Sin+Wavs/16000.mp3"],
 ]
 const mainTonesLists = [tonesListEasy, tonesListMed, tonesListHard];
 
@@ -63,7 +63,7 @@ class App extends React.Component {
     this.audioFiles = [];
     for (let i = 0; i < tonesList.length; i++) {
       this.audioFiles.push(new Audio(tonesList[i][1]));
-      console.log(this.audioFiles[i].);
+      console.log(this.audioFiles[i]);
     };
     this.state = {
       difficulty: 1,
